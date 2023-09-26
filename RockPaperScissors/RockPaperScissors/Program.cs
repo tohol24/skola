@@ -15,6 +15,8 @@ namespace RockPaperScissors
         {
             Program function = new Program();
             Console.WriteLine("Vítej ve hře. Stiskni klávesu pro začátek hry");
+            Console.WriteLine(); 
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.ReadKey();
             function.Hra();
         }
@@ -23,13 +25,15 @@ namespace RockPaperScissors
         {
             Program function = new Program();
 
-            while (true) 
+            while (true)
             {
                 item = "";
 
                 Console.WriteLine("Pro nůžky zadej N, pro kámen K, pro papír P");
                 item = Console.ReadLine();
                 item = item.ToLower();
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Red;
 
                 switch (item)
                 {
@@ -51,6 +55,8 @@ namespace RockPaperScissors
                 }
 
                 itemPC = rng.Next(1, 4); // 1=kámen, 2=nůžky, 3=papír
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Yellow;
 
                 switch (itemPC)  // Vypsání předmětu PC 
                 {
@@ -65,24 +71,32 @@ namespace RockPaperScissors
                         break;
                 }
 
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Green;
+
                 if (itemPC == itemPlayer)   // Výpočítání výsledku
                 {
-                    Console.WriteLine("Remíza");
+                    Console.WriteLine("!REMÍZA!");
                 }
                 else if ((itemPlayer == 1 && itemPC == 2) || (itemPlayer == 2 && itemPC == 3) || (itemPlayer == 3 && itemPC == 1))
                 {
                     Console.WriteLine("Hráč vyhrál");
+                    scorePlayer++;
                 }
                 else
                 {
                     Console.WriteLine("Počítač vyhrál");
+                    scorePC++;
                 }
 
+                Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.Cyan;
+
                 Console.WriteLine("Aktuální skóre hráče je: " + scorePlayer + Environment.NewLine + "Počítače: " + scorePC);
-                Console.WriteLine("Pro restart hry zmáčkni libovolné tlačítko");
+                Console.WriteLine("Pro další hru zmáčkni libovolné tlačítko");
                 Console.ReadKey();
                 Console.Clear();
             }
-        }     
+        }
     }
 }
