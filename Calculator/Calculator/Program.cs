@@ -4,6 +4,8 @@ namespace Calculator
 {
     internal class Program
     {
+        string numInput = "";
+        int num = 0;
         static void Main(string[] args)
         {
             int fun = 0;
@@ -32,14 +34,17 @@ namespace Calculator
         {
             Program function = new Program();
 
-            int cislo = 0;
+            numInput = "0";
             Console.WriteLine("Zadej číslo na převod");
-            cislo = Convert.ToInt32(Console.ReadLine());
-            string binary = Convert.ToString(cislo, 2);
-            Console.WriteLine(binary);
-            Console.WriteLine("Klikni pro restart kalkulačky");
-            Console.ReadKey();
-
+            numInput = Console.ReadLine();
+            if (Int32.TryParse(numInput.ToString(),out int number))
+            {
+                num = Convert.ToInt32(numInput);
+                string binary = Convert.ToString(num, 2);
+                Console.WriteLine(binary);
+                Console.WriteLine("Klikni pro restart kalkulačky");
+                Console.ReadKey();
+            }                      
         }
 
         public void Calc()
