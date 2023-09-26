@@ -1,0 +1,17 @@
+cd d:/prg
+
+git clone https://github.com/tohol24/skola.git
+
+cd skola
+
+git add .
+
+git status
+
+git commit -m “nazev-commitu”
+
+git push origin main
+
+git pull origin main
+
+
