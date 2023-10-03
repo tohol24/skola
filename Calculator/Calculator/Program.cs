@@ -4,96 +4,133 @@ namespace Calculator
 {
     internal class Program
     {
-        string numInput = "";
-        int num = 0;
+        static double num = 0;
+        static double result = 0;
+
         static void Main(string[] args)
         {
             int fun = 0;
             while (true)
             {
+                num = 0;
                 Console.Clear();
-                Console.WriteLine("Nyní si zvol funcki kalkulačky!" + Environment.NewLine + "Pro převod na binární kód zvol 1" + Environment.NewLine + "Pro běžnou kalkulačku zvol 2");
-                fun = Convert.ToInt16(Console.ReadLine());
-                Program function = new Program();
+                Console.WriteLine("Nyní si zvolte funkci kalkulačky!" + Environment.NewLine + "Pro převod na binární kód zvolte 1" + Environment.NewLine + "Pro běžnou kalkulačku zvolte 2");
+                fun = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+
                 switch (fun)
                 {
                     case 1:
-                        {
-                            function.Binary();
-                        }
+                        Binary();
                         break;
 
                     case 2:
-                        function.Calc();
+                        Console.WriteLine("Zadejte číslo:");
+                        num = Convert.ToDouble(Console.ReadLine());
+                        Calc();
+                        break;
+
+                    default:
+                        Console.WriteLine("Neplatná volba. Zkuste to znovu.");
                         break;
                 }
             }
         }
 
-        public void Binary()
+        public static void Binary()
         {
-            Program function = new Program();
-
-            numInput = "0";
-            Console.WriteLine("Zadej číslo na převod");
-            numInput = Console.ReadLine();
-            if (Int32.TryParse(numInput.ToString(),out int number))
+            Console.WriteLine("Zadejte číslo pro převod:");
+            string numInput = Console.ReadLine();
+            if (Int32.TryParse(numInput, out int number))
             {
-                num = Convert.ToInt32(numInput);
-                string binary = Convert.ToString(num, 2);
-                Console.WriteLine(binary);
-                Console.WriteLine("Klikni pro restart kalkulačky");
-                Console.ReadKey();
-            }                      
+                string binary = Convert.ToString(number, 2);
+                Console.WriteLine("Výsledek převodu na binární kód: " + binary);
+            }
+            else
+            {
+                Console.WriteLine("Neplatný vstup. Zadejte platné číslo.");
+            }
+            Console.WriteLine("Stiskněte klávesu pro restart kalkulačky.");
+            Console.ReadKey();
         }
 
-        public void Calc()
+        public static void Calc()
         {
-            Double num1 = 0;
-            Double num2 = 0;
-            Double result = 0;
-            string sign = "";
-            Program function = new Program();
-
-            Console.WriteLine("Zadej první číslo");
-            num1 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Zadej druhé číslo");
-            num2 = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Zadej znaménko");
-            sign = Console.ReadLine();
+            Console.WriteLine("Zadejte operaci (+, -, *, /):");
+            string sign = Console.ReadLine();
 
             switch (sign)
             {
                 case "+":
-                    result = num1 + num2;
-                    Console.WriteLine("Výsledek je " + result);
+                    result = Plus(result, num);
                     break;
+
                 case "-":
-                    result = num1 - num2;
-                    Console.WriteLine("Výsledek je " + result);
+                    result = Minus(result, num);
                     break;
+
                 case "*":
-                    result = num1 * num2;
-                    Console.WriteLine("Výsledek je " + result);
+                    result = Times(result, num);
                     break;
+
                 case "/":
-                    if (num1!=0 && num2!=0)
+                    if (num != 0)
                     {
-                        result = num1 / num2;
-                        Console.WriteLine("Výsledek je " + result);                        
+                        result = Divide(result, num);
                     }
                     else
                     {
                         Console.WriteLine("Nelze dělit nulou!!!");
+                        Console.WriteLine("Stiskněte klávesu pro restart kalkulačky.");
+                        Console.ReadKey();
+                        return;
                     }
                     break;
+
                 default:
-                    Console.WriteLine("Neplatné znaménko");
-                    break;
-
-
+                    Console.WriteLine("Neplatná operace.");
+                    Console.WriteLine("Stiskněte klávesu pro restart kalkulačky.");
+                    Console.ReadKey();
+                    return;
             }
-            Console.WriteLine("Klikni pro restart kalkulačky");
+
+            Console.WriteLine("Průběžný výsledek: " + result);
+            Console.WriteLine("Stiskněte klávesu pro restart kalkulačky nebo mezerník pro zobrazení výsledku.");
+            ConsoleKeyInfo key = Console.ReadKey();
+            if (key.Key == ConsoleKey.Spacebar)
+            {
+                Result(result);
+                result = 0;
+            }
+            else
+            {
+                Calc();
+            }
+        }
+
+        public static double Plus(double result, double num)
+        {
+            return result + num;
+        }
+
+        public static double Minus(double result, double num)
+        {
+            return result - num;
+        }
+
+        public static double Times(double result, double num)
+        {
+            return result * num;
+        }
+
+        public static double Divide(double result, double num)
+        {
+            return result / num;
+        }
+
+        public static void Result(double result)
+        {
+            Console.WriteLine("Výsledek je " + result);
             Console.ReadKey();
         }
     }
