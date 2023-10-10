@@ -7,7 +7,7 @@ namespace Calculator
         static double num = 0;  // Číslo pro počítání
         static double result = 0;  // Průběžný výsledek
 
-        static void Main(string[] args)
+        static void Main()
         {
             int fun = 0;  // Funkce kalkulačky
             while (true)
@@ -167,6 +167,7 @@ namespace Calculator
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nVýsledek je " + result);
             Console.ReadKey();
+            Main();
         }
     }
 }
