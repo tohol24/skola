@@ -16,57 +16,68 @@ namespace ArrayPlayground
 
             for (int i = 0; i < Numarray.Length; i++)
             {
-                Console.WriteLine(Numarray[i]);
+                Console.WriteLine("Prvek na indexu " + i + " je: " + Numarray[i]);
                 Console.WriteLine();
             }
 
             int sum;
             sum = Numarray.Sum();
-            Console.WriteLine(sum);
+            Console.WriteLine("Součet je " + sum);
+            Console.ReadKey();
+
 
             int average;
             average = (sum / Numarray.Length);
-            Console.WriteLine(average);
+            Console.WriteLine("Průměr je " + average);
+            Console.ReadKey();
+
 
             int max;
             max = Numarray.Max();
-            Console.WriteLine(max);
+            Console.WriteLine("Maximum je " + max);
+            Console.ReadKey();
+
 
             int min;
             min = Numarray.Min();
-            Console.WriteLine(min);
+            Console.WriteLine("Minimum je " + min);
+            Console.ReadKey();
+
 
             int index;
-            int Position;
             Console.WriteLine("Zadej prvek a já najdu index");
-            Position = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine(Array.IndexOf(Numarray, Position));
+            index = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Index je " + Array.IndexOf(Numarray, index));
+            Console.ReadKey();
 
             Random random = new Random();
-            int[] array= new int[100];
+            int[] myArray = new int[100];
             for (int i = 0; i < 100; i++)
             {
-                array[i] = random.Next(1, 10);
-            }
-            for (int i = 0; i < array.Length; i++)
-            {
-                Console.Write(array[i]);
-                Console.WriteLine();
+                myArray[i] = random.Next(0, 10);
+
             }
 
-            //TODO 9: Spočítej kolikrát se každé číslo v poli vyskytuje a spočítané četnosti vypiš do konzole.
             int[] counts = new int[10];
-
-            int[] reverseArray = new int[Numarray.Length];
-            for (int i = Numarray.Length - 1; i >= 0; i--)
+            foreach (int number in myArray)
             {
-                reverseArray[Numarray.Length - i - 1] = Numarray[i];
+                counts[number]++;
             }
-            for (int i = 0; i < reverseArray.Length; i++)
+            for (int i = 0; i < counts.Length; i++)
             {
-                Console.WriteLine(reverseArray[i]);
+                Console.WriteLine("Počet výskytů čísla " + i + " je: " + counts[i]);
             }
-
+            Console.WriteLine("Řada normálně");
+            for (int i = 0; i < myArray.Length; i++)
+            {
+                Console.WriteLine(myArray[i]);
+            }
+            int[] secArrray= new int[myArray.Length];
+            Console.WriteLine("Řada opačně");// nutno opravit
+            for (int i = myArray.Length-1; i >= 0; i--)
+            {
+                Console.WriteLine(myArray[myArray.Length-1 - i]);
+            }
             Console.ReadKey();
         }
     }
