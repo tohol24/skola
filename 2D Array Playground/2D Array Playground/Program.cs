@@ -58,26 +58,112 @@ namespace _2D_Array_Playground
                 Console.Write(board[i, board.GetLength(0) - 1]);
             }
             Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine();
 
             //TODO 4: Prohoď prvek na souřadnicích [xFirst, yFirst] s prvkem na souřadnicích [xSecond, ySecond] a vypiš celé pole do konzole po prohození.
             //Nápověda: Budeš potřebovat proměnnou navíc, do které si uložíš první z prvků před tím, než ho přepíšeš druhým, abys hodnotou prvního prvku potom mohl přepsat druhý
-            int xFirst, yFirst, xSecond, ySecond;
+            int xFirst = 0;
+            int yFirst = 0;
+            int xSecond = 1;
+            int ySecond = 1;
+            int first = board[xFirst, yFirst];
+            int second = board[xSecond, ySecond];
+            int temp = first;
+            board[xFirst, yFirst] = second;
+            board[xSecond, ySecond] = temp;
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    Console.Write(board[i, j] + " ");
+                    next++;
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+
 
             //TODO 5: Prohoď n-tý řádek v poli s m-tým řádkem (n je dáno proměnnou nRowSwap, m mRowSwap) a vypiš celé pole do konzole po prohození.
             int nRowSwap = 0;
             int mRowSwap = 1;
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                int tempRow = board[nRowSwap, i];
+                board[nRowSwap, i] = board[mRowSwap, i];
+                board[mRowSwap, i] = tempRow;
+            }
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    Console.Write(board[i, j] + " ");
+                    next++;
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
 
             //TODO 6: Prohoď n-tý sloupec v poli s m-tým sloupcem (n je dáno proměnnou nColSwap, m mColSwap) a vypiš celé pole do konzole po prohození.
             int nColSwap = 0;
             int mColSwap = 1;
+            for (int i = 0; i < board.GetLength(1); i++)
+            {
+                int tempCol = board[i, nColSwap];
+                board[i, nColSwap] = board[i, mColSwap];
+                board[i, mColSwap] = tempCol;
+            }
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    Console.Write(board[i, j] + " ");
+                    next++;
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
 
             //TODO 7: Otoč pořadí prvků na hlavní diagonále (z levého horního rohu do pravého dolního rohu) a vypiš celé pole do konzole po otočení.
-
+            for (int i = 0; i < board.GetLength(0) / 2; i++)
+            {
+                int tempMain = board[i, i];
+                int reversed = board.GetLength(0) - 1;
+                board[i, i] = board[reversed, reversed];
+                board[reversed, reversed] = tempMain;
+            }
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    Console.Write(board[i, j] + " ");
+                    next++;
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
 
             //TODO 8: Otoč pořadí prvků na vedlejší diagonále (z pravého horního rohu do levého dolního rohu) a vypiš celé pole do konzole po otočení.
-
-
+            for (int i = 4; i >= board.GetLength(0) / 2; i--)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    int tempSide = board[i, j];
+                    board[i, j] = board[j, i];
+                    board[j, i] = tempSide;
+                }
+            }
+            for(int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    Console.Write(board[i, j] + " ");
+                    next++;
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
             Console.ReadKey();
         }
+
     }
 }
