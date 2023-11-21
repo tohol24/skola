@@ -32,26 +32,32 @@ namespace _2DArray
                 {
                     defColor();
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"Zvol funkci, kterou chceš. Napiš:\n1 pro sečtení vygenerované (původní) matice\n2 pro vynásobení součtu prvků kvocientem\n3 pro vynásobení součtem prvků jiné matice\n4 pro přehození čísel na hlavní diagonále\n5 pro překlopení čísel přes hlavní diagonálu");
+                    Console.WriteLine($"Zvol funkci, kterou chceš. Napiš:\n1 pro vypsánířádku matice\n2 pro vypsání sloupce matice\n3 pro sečtení vygenerované (původní) matice\n4 pro vynásobení součtu prvků kvocientem\n5 pro vynásobení součtem prvků jiné matice\n6 pro přehození čísel na hlavní diagonále\n7 pro překlopení čísel přes hlavní diagonálu");
                     menu = Convert.ToInt16(Console.ReadLine());
                     defColor();
                     switch (menu)
                     {
-                        case 1:
+                        case 1: 
+                            writeRow(myArray);
+                            break;
+                        case 2:
+                            writeColumn(myArray);
+                            break;
+                        case 3:
                             int sum = sumArray(myArray);
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine($"Součet matice je {sum}:");
                             break;
-                        case 2:
+                        case 4:
                             multiplyArray(myArray);
                             break;
-                        case 3:
+                        case 5:
                             arrayTimesArray(myArray, backArray);
                             break;
-                        case 4:
+                        case 6:
                             swapMain(myArray, backArray);
                             break;
-                        case 5:
+                        case 7:
                             transposeArray(myArray, backArray);
                             break;
                         default:
@@ -73,9 +79,9 @@ namespace _2DArray
             {
                 Console.WriteLine($"Napiš:\n1 pro posloupnou matici\n2 pro náhodnou matici");
                 short menu = Convert.ToInt16(Console.ReadLine());
-                Console.WriteLine("Nyní zadej stranu (a) matice:");
+                Console.WriteLine("Nyní zadej výšku matice:");
                 int sizeA = Convert.ToInt32(Console.ReadLine());
-                Console.WriteLine("Nyní zadej stranu (a) matice:");
+                Console.WriteLine("Nyní zadej šířku matice:");
                 int sizeB = Convert.ToInt32(Console.ReadLine());
                 clearConsole();
                 switch (menu)
@@ -83,7 +89,7 @@ namespace _2DArray
                     case 1:
                         return orderedArray(sizeA, sizeB);
                     case 2:
-                        return randArray(sizeA, sizeB));
+                        return randArray(sizeA, sizeB);
                     default:
                         Error();
                         break;
@@ -97,7 +103,7 @@ namespace _2DArray
             return null;
         }
 
-        static int[,] randArray(int sizeA,int sizeB) // Vytvoření náhodné matice
+        static int[,] randArray(int sizeA, int sizeB) // Vytvoření náhodné matice
         {
             Random random = new Random();
             int[,] myArray = new int[sizeA, sizeB];
@@ -147,6 +153,28 @@ namespace _2DArray
                 Console.WriteLine();
             }
         }
+        static void writeRow(int[,] myArray) // Součet členů matice
+        {
+            Console.WriteLine("Zadej řádek k vyhledání:");
+            int nRow = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Nyní vypíši řádek: " + nRow);
+            for (int j = 0; j < myArray.GetLength(1); j++)
+            {
+                Console.Write(myArray[nRow, j] + " ");
+            }
+            Console.WriteLine();
+        }
+        static void writeColumn(int[,] myArray) // Součet členů matice
+        {
+            Console.WriteLine("Zadej SLOUPEC k vyhledání:");
+            int nColumn = Convert.ToInt32(Console.ReadLine()); ;
+            Console.WriteLine("Nyní vypíši řádek: " + nColumn);
+            for (int i = 0; i < myArray.GetLength(0); i++)
+            {
+                Console.WriteLine(myArray[i, nColumn] + " ");
+            }
+            Console.WriteLine();
+        }
 
         static int sumArray(int[,] myArray) // Součet členů matice
         {
@@ -193,31 +221,40 @@ namespace _2DArray
 
         static void swapMain(int[,] myArray, int[,] backArray) //Přehození číslel na hlavní diagonále
         {
-            for (int i = 0; i < myArray.GetLength(0) / 2; i++)
+            if (myArray.GetLength(0) == myArray.GetLength(1))
             {
-                int tempMain = myArray[i, i];
-                int reversed = myArray.GetLength(0) - 1;
-                myArray[i, i] = myArray[reversed, reversed];
-                myArray[reversed, reversed] = tempMain;
+                for (int i = 0; i < myArray.GetLength(0) / 2; i++)
+                {
+                    int tempMain = myArray[i, i];
+                    int reversed = myArray.GetLength(0) - 1;
+                    myArray[i, i] = myArray[reversed, reversed];
+                    myArray[reversed, reversed] = tempMain;
+                }
+                WriteArray(myArray);
+                myArray = backArray;
+                Console.WriteLine();
             }
-            WriteArray(myArray);
-            myArray = backArray;
-            Console.WriteLine();
+            else
+            {
+                Console.WriteLine("Nemáš čtvercovou matici. Nelze otočit!");
+            }
+
         }
 
         static void transposeArray(int[,] myArray, int[,] backArray)  // Transpozice matice přes hlavní diagonálu
         {
-            int[,] tempArray = new int[myArray.GetLength(0), myArray.GetLength(0)];
-            for (int i = 0; i < myArray.GetLength(0); i++)
+            int[,] tempArray = new int[myArray.GetLength(1), myArray.GetLength(0)];
+            for (int i = 0; i < myArray.GetLength(0); i++) 
             {
                 for (int j = 0; j < myArray.GetLength(1); j++)
                 {
-                    tempArray[i, j] = myArray[j, i];
+                    tempArray[j, i] = myArray[i, j];
                 }
             }
             myArray = tempArray;
             WriteArray(myArray);
             myArray = backArray;
+            
         }
 
         static void Error()  // Funkce pro chybu (Catch)
