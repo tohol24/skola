@@ -33,7 +33,7 @@ namespace _2DArrayHomework
                 {
                     defColor();
                     Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine($"Zvol funkci, kterou chceš. Napiš:\n1 pro vypsání řádku matice\n2 pro vypsání sloupce matice\n3 pro sečtení vygenerované (původní) matice\n4 pro vynásobení jednotlivých prvků kvocientem\n5 pro sečtení s jinou náhodnou maticí\n6 pro přehození čísel na hlavní diagonále\n7 pro překlopení čísel přes hlavní diagonálu\n8 pro přehození řádku nebo sloupce ");
+                    Console.WriteLine($"Zvol funkci, kterou chceš. Napiš:\n1 pro vypsání řádku matice\n2 pro vypsání sloupce matice\n3 pro sečtení vygenerované (původní) matice\n4 pro vynásobení jednotlivých prvků kvocientem\n5 pro sečtení s jinou náhodnou maticí\n6 pro přehození čísel na hlavní diagonále\n7 pro přehození čísel na vedlejší diagonále\n8 pro překlopení čísel přes hlavní diagonálu\n9 pro přehození řádku nebo sloupce ");
                     menu = Convert.ToInt16(Console.ReadLine());
                     defColor();
                     switch (menu)
@@ -59,9 +59,12 @@ namespace _2DArrayHomework
                             swapMain(myArray, backArray);
                             break;
                         case 7:
-                            transposeArray(myArray, backArray);
+                            swapSide(myArray, backArray);
                             break;
                         case 8:
+                            transposeArray(myArray, backArray);
+                            break;
+                        case 9:
                             switchMenu(myArray, backArray);
                             break;
                         default:
@@ -267,6 +270,31 @@ namespace _2DArrayHomework
             }
 
         }
+
+        static void swapSide(int[,] myArray, int[,] backArray) //Přehození číslel na vedleší diagonále
+        {
+
+            if (myArray.GetLength(0) == myArray.GetLength(1))
+            {
+                int[,] newArray = new int[myArray.GetLength(0), myArray.GetLength(0)];
+                int length = myArray.GetLength(0);
+
+                for (int i = 0; i < length / 2; i++)
+                {
+                    newArray[i, i] = myArray[length - 1 - i, length - 1 - i];
+                    myArray[length - 1 - i, length - 1 - i] = myArray[i, i];
+                    myArray[i, i] = newArray[i, i];
+                }
+
+                WriteArray(myArray);
+            }
+            else
+            {
+                Console.WriteLine("Nemáš čtvercovou matici. Nelze otočit!");
+            }
+
+        }
+
 
         static void transposeArray(int[,] myArray, int[,] backArray)  // Transpozice matice přes hlavní diagonálu
         {
