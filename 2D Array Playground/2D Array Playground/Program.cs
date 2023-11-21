@@ -108,8 +108,7 @@ namespace _2D_Array_Playground
             {
                 Console.Write(myArray[i, myArray.GetLength(0) - 1 - i] + " ");
             }
-<<<<<<< HEAD
-=======
+
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
 
@@ -214,12 +213,9 @@ namespace _2D_Array_Playground
                 }
                 Console.WriteLine();
             }
->>>>>>> 4a8cbbe6fba223166cc568e79aead240c1c2e789
             Console.WriteLine();
             Console.ReadKey();
         }
-
-<<<<<<< HEAD
         //TODO 4: Prohoď prvek na souřadnicích [xFirst, yFirst] s prvkem na souřadnicích [xSecond, ySecond] a vypiš celé pole do konzole po prohození.
         //Nápověda: Budeš potřebovat proměnnou navíc, do které si uložíš první z prvků před tím, než ho přepíšeš druhým, abys hodnotou prvního prvku potom mohl přepsat druhý
         int xFirst, yFirst, xSecond, ySecond;
@@ -236,8 +232,5 @@ namespace _2D_Array_Playground
 
 
         //TODO 8: Otoč pořadí prvků na vedlejší diagonále (z pravého horního rohu do levého dolního rohu) a vypiš celé pole do konzole po otočení.
-
-=======
->>>>>>> 4a8cbbe6fba223166cc568e79aead240c1c2e789
     }
 }
