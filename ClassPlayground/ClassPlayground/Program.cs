@@ -64,6 +64,30 @@ namespace ClassPlayground
         {
             try
             {
+                short menu = Convert.ToInt16(Console.ReadLine());
+                switch (menu)
+                {
+                    case 1:
+                        Rectangle();
+                        break;
+                    case 2:
+                        Bank();
+                        break;
+                    default:
+                        Console.WriteLine("Toto není funkce programu");
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public static void Rectangle()
+        {
+            try
+            {
                 int width = 0;
                 int height = 0;
 
@@ -72,10 +96,17 @@ namespace ClassPlayground
                 Console.WriteLine("Zadej výšku");
                 height = Convert.ToInt16(Console.ReadLine());
 
+<<<<<<< HEAD
                 Rectangle rectangle = new Rectangle();
                 rectangle.CalculateArea(width, height);
                 rectangle.CalculateAspectRatio(width, height);
                 rectangle.ContainsPoint(width, height);
+=======
+                Rectangle rectangle = new Rectangle(width, height);
+                rectangle.CalculateArea();
+                rectangle.CalculateAspectRatio();
+                rectangle.ContainsPoint();
+>>>>>>> 429bcb18aad6e90b5c3543ef3611d9b31c1117c3
                 Console.ReadKey();
             }
             catch (Exception)
@@ -83,6 +114,28 @@ namespace ClassPlayground
                 Console.WriteLine("Chyba");
                 Console.ReadKey();
             }
+        }
+        public static void Bank()
+        {
+
+            while (true)
+            {
+                Console.WriteLine("zvol co chceš udělat");
+                short menu = Convert.ToInt16(Console.ReadLine());
+                BankAccount bankAccount1 = new BankAccount("Miloš Zeman", "Ruský Rubl");
+                switch (menu)
+                {
+                    case 1:
+                        bankAccount1.Deposit();
+                        break;
+                    case 2:
+                        bankAccount1.Withdraw();
+                        break;
+                    default:
+                        Console.WriteLine("Toto není funkce programu");
+                        break;
+                }
+            }           
         }
     }
 }

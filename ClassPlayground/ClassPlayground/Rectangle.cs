@@ -4,7 +4,16 @@ namespace ClassPlayground
 {
     internal class Rectangle
     {
-        public void CalculateArea(int width, int height)
+        int width;
+        int height;
+
+        public Rectangle(int width, int height)
+        {
+            this.width = width;
+            this.height = height;
+        }
+
+        public void CalculateArea()
         {
             try
             {
@@ -20,7 +29,7 @@ namespace ClassPlayground
                 Console.ReadKey();
             }
         }
-        public void CalculateAspectRatio(int width, int height)
+        public void CalculateAspectRatio()
         {
             if (width > height)
             {
@@ -35,6 +44,7 @@ namespace ClassPlayground
                 Console.WriteLine("Obdelník je vysoký");
             }
 
+<<<<<<< HEAD
             int heightRatio = height;
             int widthRatio = width;
 
@@ -51,14 +61,42 @@ namespace ClassPlayground
                     }
                     else
                     {
+=======
+            if (width <= 0 || height <= 0)
+            {
+                Console.WriteLine("");
+                return;
+            }
+
+            int WidthAspect = width;
+            int HeightAspect = height;
+            bool repat = true;
+            while (repat == true)
+            {
+                for (int i = 10; i >= 1; i--)
+                {
+                    if (i == 1)
+                    {
+                        repat = false;
+                    }
+                    if (WidthAspect % i == 0 && HeightAspect % i == 0 && i != 1)
+                    {
+                        WidthAspect /= i;
+                        HeightAspect /= i;
+>>>>>>> 429bcb18aad6e90b5c3543ef3611d9b31c1117c3
                         i = 10;
                     }
                 }
             }
 
+<<<<<<< HEAD
             Console.WriteLine($"Poměr šířka:výška je {widthRatio}:{heightRatio}");
+=======
+            Console.WriteLine("Poměr stran: " + WidthAspect + ":" + HeightAspect);
+
+>>>>>>> 429bcb18aad6e90b5c3543ef3611d9b31c1117c3
         }
-        public void ContainsPoint(int width, int height)
+        public void ContainsPoint()
         {
             int x = 0;
             int y = 0;
