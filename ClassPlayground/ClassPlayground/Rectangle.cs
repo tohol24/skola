@@ -2,15 +2,6 @@
 
 namespace ClassPlayground
 {
-    /*
- * TODO:
- * 1) Vytvoř třídu Rectangle, kterou budeme reprezentovat obecný obdélník
- *    Přidej třídě Rectangle dvě proměnné - width a height (datový typ nechám na tobě)
- *    Přidej třídě Rectangle tři funkce - CalculateArea, která spočítá obsah plochy obdélníka
- *                                      - CalculateAspectRatio, která spočítá poměr stran. Využij spočítaný poměr k určení toho, jestli je obdélník široký, vysoký, nebo je to čtverec
- *                                      - ContainsPoint, která jako vstupní parametr přijme souřadnice x,y nějakého bodu a určí, jestli se daný bod nachází v obdélníku, nebo ne,
- *                                                       a podle toho vrátí true/false
- *    Přidej třídě Rectangle konstruktor, který bude přijímat dva parametry - šířku a výšku, a při jeho zavolání je správně nastaví*/
     internal class Rectangle
     {
         public void CalculateArea(int width, int height)
@@ -44,23 +35,28 @@ namespace ClassPlayground
                 Console.WriteLine("Obdelník je vysoký");
             }
 
-            int WidthAspect = width;
-            int HeightAspect = height;
+            int heightRatio = height;
+            int widthRatio = width;
 
-            for (int i = Math.Min(width, height); i > 1; i--)
+            for (int i = 10; i > 0; i--)
             {
-                if (width % i == 0 && height % i == 0)
+                if (heightRatio % i == 0 && widthRatio % i == 0)
                 {
-                    WidthAspect /= i;
-                    HeightAspect /= i;
+                    heightRatio /= i;
+                    widthRatio /= i;
+
+                    if (i == 1)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        i = 10;
+                    }
                 }
             }
 
-            Console.WriteLine("Poměr stran: " + WidthAspect + ":" + HeightAspect);
-
-
-            Console.WriteLine("Poměr stran: " + WidthAspect + ":" + HeightAspect);
-
+            Console.WriteLine($"Poměr šířka:výška je {widthRatio}:{heightRatio}");
         }
         public void ContainsPoint(int width, int height)
         {
@@ -72,10 +68,9 @@ namespace ClassPlayground
             Console.WriteLine("Zadej bod na ose y");
             y = Convert.ToInt32(Console.ReadLine());
 
-
             if (x <= width && y <= height)
             {
-               inside= true;
+                inside = true;
                 Console.WriteLine($"Výrok, že bod je uvnitř je {inside}");
             }
         }

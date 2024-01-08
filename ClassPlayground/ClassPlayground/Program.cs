@@ -75,6 +75,7 @@ namespace ClassPlayground
                 Rectangle rectangle = new Rectangle();
                 rectangle.CalculateArea(width, height);
                 rectangle.CalculateAspectRatio(width, height);
+                rectangle.ContainsPoint(width, height);
                 Console.ReadKey();
             }
             catch (Exception)
