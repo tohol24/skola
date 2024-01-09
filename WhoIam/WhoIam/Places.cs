@@ -1,11 +1,13 @@
 ﻿using System;
+using System.IO;
 
 namespace WhoIam
 {
-    internal class Places
+    public class Places
     {
         private static readonly Texts texts = new Texts();
         private static readonly Transport transport = new Transport();
+        private static readonly Dialogs dialogs = new Dialogs();
 
         public static void OldTownSquare()
         {
@@ -17,12 +19,14 @@ namespace WhoIam
         {
             texts.WelcomeText("Karlův most", "Asijský turista");
             texts.TransportInfo("Pražský hrad", "Staroměstské náměstí", "Národní knihovna");
+            dialogs.AsianTourist();
             transport.Move(PragueCastle, OldTownSquare, NationalLibrary);
         }
         public static void NationalLibrary()
         {
             texts.WelcomeText("Národní knihovna", "Knihovnice");
             texts.TransportInfo("Karlův most", "Staroměstské náměstí", "Karlova univerzita");
+            dialogs.Librarian();
             transport.Move(CharlesBridge, OldTownSquare, CharlesUniversity);
             Console.ReadKey();
         }
@@ -30,6 +34,7 @@ namespace WhoIam
         {
             texts.WelcomeText("Pražský hrad", "Průvodce");
             texts.TransportInfo("Letiště Praha", "Karlův Most", "ČVUT");
+            dialogs.TourGuide();
             transport.Move(Airport, CharlesBridge, TechnicalUniversity);
             Console.ReadKey();
         }
@@ -99,6 +104,7 @@ namespace WhoIam
         public static void Clinic()
         {
             Console.WriteLine($"Právě jsi se probudil na jakési klinice. Na vrátnici sedí starší paní. Zaptej se jí, co se ti stalo.");
+            dialogs.Receptionist();
             transport.Move(PragueCastle, CharlesBridge, NationalLibrary);
             Console.ReadKey();
 

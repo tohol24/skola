@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Timers;
 
 namespace WhoIam
 {
@@ -19,7 +18,7 @@ namespace WhoIam
             Console.WriteLine($"Hra se ovládá pouze čísly 1 až 4. Ta spustí vybrané interakce a přesuny na místa\nMaximální počet rozhovorů je 6");
             System.Warning();
             Console.WriteLine($"Klikni pro pokračování");
-            System.ColorBack();     
+            System.ColorBack();
             Console.ReadKey();
             ChooseLevel();
         }
@@ -28,26 +27,24 @@ namespace WhoIam
             int Level = 0;
             Console.WriteLine($"Zvol postavu 1-3");
             Level = System.ValidateNumber(Level);
-            Console.WriteLine($"Byla zvolena postava {Level}");         
+            Console.WriteLine($"Byla zvolena postava {Level}");
             switch (Level)
             {
                 case 1:
                     Character Karel = new Character("Karel IV.", 1316, "Český král a římský císař");
-                    System.StartGame();
                     break;
                 case 2:
                     Character Franz = new Character("Franz Kafka", 1883, "Český německy píšící spisovatel");
-                    System.StartGame();
                     break;
                 case 3:
                     Character Masaryk = new Character("Tomáš Garrigue Masaryk", 1850, "První československý prezident");
-                    System.StartGame();
                     break;
                 default:
                     ChooseLevel();
                     break;
             }
-            Console.ReadKey();        
-        }        
+            System.StartGame();
+            Console.ReadKey();
+        }
     }
 }
