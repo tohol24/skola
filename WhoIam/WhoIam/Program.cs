@@ -20,7 +20,7 @@ namespace WhoIam
         static void Tutorial()
         {
             // Instrukce pro ovládání hry
-            Console.WriteLine($"Hra se ovládá pouze čísly 1 až 4. Ta spustí vybrané interakce a přesuny na místa\nMaximální počet rozhovorů je 6");
+            Console.WriteLine($"Hra se ovládá pouze čísly 1 až 3. Ta spustí vybrané interakce a přesuny na místa\nPočet rozhovorů je zatím neomezený. Hru lze však ukončit kdykli manuálně.");
             Functions.Warning($"Klikni pro pokračování");
             Console.ReadKey();
             ChooseLevel();

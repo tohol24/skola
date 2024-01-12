@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 
 namespace WhoIam
 {
@@ -17,7 +16,7 @@ namespace WhoIam
         }
         public static void CharlesBridge()
         {
-             texts.VisitLocation("Karlův most", "Asijský turista", "Pražský hrad", "Staroměstské náměstí", "Národní knihovna");
+            texts.VisitLocation("Karlův most", "Asijský turista", "Pražský hrad", "Staroměstské náměstí", "Národní knihovna");
             Functions.Menu(PragueCastle, OldTownSquare, NationalLibrary, dialogs.AsianTourist);
             Console.ReadKey();
         }
@@ -54,7 +53,7 @@ namespace WhoIam
         }
         public static void CharlesUniversity()
         {
-            texts.VisitLocation("Karlova Univerzita", "Student Historie", "Václavské náměstí", "Staroměstské náměstí", "Národní knihovna");
+            texts.VisitLocation("Karlova Univerzita", "Student", "Václavské náměstí", "Staroměstské náměstí", "Národní knihovna");
             Functions.Menu(WenceslasSquare, OldTownSquare, NationalLibrary, dialogs.Student);
             Console.ReadKey();
         }
