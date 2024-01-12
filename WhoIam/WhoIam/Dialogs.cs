@@ -2,13 +2,18 @@
 
 namespace WhoIam
 {
+    // Třída obsahující dialogy a interakce s postavami ve hře
     internal class Dialogs
     {
+        // Instance programu pro získání vybrané postavy
         Program program = new Program();
-        private string dialog1 = ""; //KarelIV
-        private string dialog2 = ""; //Kafka
-        private string dialog3 = ""; //Masaryk
 
+        // Texty dialogů pro jednotlivé postavy
+        private string dialog1 = ""; // Karel IV
+        private string dialog2 = ""; // Kafka
+        private string dialog3 = ""; // Masaryk
+
+        // Metoda pro zobrazení dialogu podle vybrané postavy
         public void ShowDialog(string dialog1, string dialog2, string dialog3)
         {
             int Character = Program.SelectCharacter();
@@ -23,15 +28,18 @@ namespace WhoIam
                 case 3:
                     Functions.Warning(dialog3);
                     break;
-
                 default:
                     break;
             }
         }
+
+        // Metoda pro získání jména postavy
         public void GetNpc(Action NpcName)
         {
             NpcName();
         }
+
+        // Metody pro jednotlivé postavy s jejich dialogy
         public void AsianTourist()
         {
             dialog1 = "商件拒";

@@ -5,20 +5,28 @@ namespace WhoIam
     internal class Program
     {
         private static int SelectedCharacter = 0;
+
+        // Hlavní funkce programu
         static void Main(string[] args)
         {
+            // Vstupní uvítací zpráva
             Console.WriteLine($"Vítej ve hře Kdo jsem?\nTvým cílem bude procházet Prahou a mluvit s lidmi.\nNa základě informací budeš muset uhodnout, kdo jsi.");
             Functions.Warning($"Klikni pro pokračování a instrukce");
             Console.ReadKey();
-            Tutorial();         
+            Tutorial();
         }
+
+        // Tutoriál pro hráče
         static void Tutorial()
         {
+            // Instrukce pro ovládání hry
             Console.WriteLine($"Hra se ovládá pouze čísly 1 až 4. Ta spustí vybrané interakce a přesuny na místa\nMaximální počet rozhovorů je 6");
             Functions.Warning($"Klikni pro pokračování");
             Console.ReadKey();
             ChooseLevel();
         }
+
+        // Volba úrovně/postavy
         static void ChooseLevel()
         {
             int Level = 0;
@@ -29,16 +37,19 @@ namespace WhoIam
             switch (Level)
             {
                 case 1:
-
-                    Character Karel = new Character(1,"Karel IV.", 1316, "Český král a římský císař");
+                    // Vytvoření instance postavy Karel IV.
+                    Character Karel = new Character(1, "Karel IV.", 1316, "Český král a římský císař");
                     break;
                 case 2:
-                    Character Franz = new Character(2,"Franz Kafka", 1883, "Český německy píšící spisovatel");
+                    // Vytvoření instance postavy Franz Kafka
+                    Character Franz = new Character(2, "Franz Kafka", 1883, "Český německy píšící spisovatel");
                     break;
                 case 3:
-                    Character Masaryk = new Character(3,"Tomáš Garrigue Masaryk", 1850, "První československý prezident");
+                    // Vytvoření instance postavy Tomáš Garrigue Masaryk
+                    Character Masaryk = new Character(3, "Tomáš Garrigue Masaryk", 1850, "První československý prezident");
                     break;
                 default:
+                    // Pokud uživatel vybere neplatnou úroveň, znovu se mu nabídne výběr
                     ChooseLevel();
                     break;
             }
@@ -47,6 +58,8 @@ namespace WhoIam
             Functions.StartGame();
             Console.ReadKey();
         }
+
+        // Funkce pro získání vybrané postavy
         public static int SelectCharacter()
         {
             return SelectedCharacter;

@@ -2,14 +2,18 @@
 
 namespace WhoIam
 {
+    // Třída reprezentující přesun mezi místy ve hře
     internal class Transport
     {
-
+        // Akce pro jednotlivá místa
         public Action place1;
         public Action place2;
         public Action place3;
+
+        // Akce pro poslední navštívené místo
         Action lastPlace = Places.Clinic;
 
+        // Metoda pro přesun na vybrané místo
         public void Move(Action place1, Action place2, Action place3)
         {
             this.place1 = place1;
@@ -36,10 +40,13 @@ namespace WhoIam
                     place3();
                     break;
                 default:
-                    Move(place1,place2,place3);
+                    // Pokud hráč zadá neplatné číslo, znovu se mu nabídne výběr místa
+                    Move(place1, place2, place3);
                     break;
             }
-        } 
+        }
+
+        // Metoda pro přesun na posledně navštívené místo
         public void MoveToLast()
         {
             lastPlace();

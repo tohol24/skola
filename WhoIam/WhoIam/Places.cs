@@ -3,7 +3,7 @@ using System.IO;
 
 namespace WhoIam
 {
-    public class Places
+    public class Places //Tato třída obsahuje všechna místa. Možnosti přesunů a seznam tamních NPC.
     {
         private static readonly Texts texts = new Texts();
         private static readonly Transport transport = new Transport();
