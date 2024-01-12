@@ -11,101 +11,90 @@ namespace WhoIam
 
         public static void OldTownSquare()
         {
-            texts.WelcomeText("Staroměstské náměstí", "Prodejce pražské šunky");
-            texts.TransportInfo("Karlův most", "Václavské náměstí", "Karlova univerzita");
-            transport.Move(CharlesBridge, WenceslasSquare, CharlesUniversity);
+            texts.VisitLocation("Staroměstské náměstí", "Prodejce pražské šunky", "Karlův most", "Václavské náměstí", "Karlova univerzita");
+            Functions.Menu(CharlesBridge, WenceslasSquare, CharlesUniversity, dialogs.HamSeller);
+            Console.ReadKey();
         }
         public static void CharlesBridge()
         {
-            texts.WelcomeText("Karlův most", "Asijský turista");
-            texts.TransportInfo("Pražský hrad", "Staroměstské náměstí", "Národní knihovna");
-            dialogs.AsianTourist();
-            transport.Move(PragueCastle, OldTownSquare, NationalLibrary);
+             texts.VisitLocation("Karlův most", "Asijský turista", "Pražský hrad", "Staroměstské náměstí", "Národní knihovna");
+            Functions.Menu(PragueCastle, OldTownSquare, NationalLibrary, dialogs.AsianTourist);
+            Console.ReadKey();
         }
         public static void NationalLibrary()
         {
-            texts.WelcomeText("Národní knihovna", "Knihovnice");
-            texts.TransportInfo("Karlův most", "Staroměstské náměstí", "Karlova univerzita");
-            dialogs.Librarian();
-            transport.Move(CharlesBridge, OldTownSquare, CharlesUniversity);
+            texts.VisitLocation("Národní knihovna", "Knihovnice", "Karlův most", "Staroměstské náměstí", "Karlova univerzita");
+            Functions.Menu(CharlesBridge, OldTownSquare, CharlesUniversity, dialogs.Librarian);
             Console.ReadKey();
         }
+
         public static void PragueCastle()
         {
-            texts.WelcomeText("Pražský hrad", "Průvodce");
-            texts.TransportInfo("Letiště Praha", "Karlův Most", "ČVUT");
-            dialogs.TourGuide();
-            transport.Move(Airport, CharlesBridge, TechnicalUniversity);
+            texts.VisitLocation("Pražský hrad", "Průvodce", "Letiště Praha", "Karlův Most", "ČVUT");
+            Functions.Menu(Airport, CharlesBridge, TechnicalUniversity, dialogs.TourGuide);
             Console.ReadKey();
         }
         public static void WenceslasSquare()
         {
-            texts.WelcomeText("Václavské náměstí", "Pochybný prodejce");
-            texts.TransportInfo("Hlavní nádraží", "Staroměstské náměstí", "Karlova univerzita");
-            transport.Move(MainTrainStation, OldTownSquare, CharlesUniversity);
+            texts.VisitLocation("Václavské náměstí", "Pochybný prodejce", "Hlavní nádraží", "Staroměstské náměstí", "Karlova univerzita");
+            Functions.Menu(MainTrainStation, OldTownSquare, CharlesUniversity, dialogs.DrugDealer);
             Console.ReadKey();
         }
         public static void MainTrainStation()
         {
-            texts.WelcomeText("Hlavní nádraží", "Čekající cestující");
-            texts.TransportInfo("Václavské náměstí", "A.N. Florenc", "Olšanské hřbitovy");
-            transport.Move(WenceslasSquare, FlorencBusStation, Cemetery);
+            texts.VisitLocation("Hlavní nádraží", "Čekající cestující", "Václavské náměstí", "A.N. Florenc", "Olšanské hřbitovy");
+            Functions.Menu(WenceslasSquare, FlorencBusStation, Cemetery, dialogs.Passanger);
             Console.ReadKey();
         }
         public static void FlorencBusStation()
         {
-            texts.WelcomeText("Autobusové nádraží Florenc", "Cestující do Kadaně");
-            texts.TransportInfo("Hlavní nádraží", "Staroměstské náměstí", "Olšanské hřbitovy");
-            transport.Move(MainTrainStation, OldTownSquare, Cemetery);
+            texts.VisitLocation("Autobusové nádraží Florenc", "Cestující do Kadaně", "Hlavní nádraží", "Staroměstské náměstí", "Olšanské hřbitovy");
+            Functions.Menu(MainTrainStation, OldTownSquare, Cemetery, dialogs.BusPassenger);
             Console.ReadKey();
         }
         public static void CharlesUniversity()
         {
-            texts.WelcomeText("Karlova Univerzita", "Student Historie");
-            texts.TransportInfo("Václavské náměstí", "Staroměstské náměstí", "Národní knihovna");
-            transport.Move(WenceslasSquare, OldTownSquare, NationalLibrary);
+            texts.VisitLocation("Karlova Univerzita", "Student Historie", "Václavské náměstí", "Staroměstské náměstí", "Národní knihovna");
+            Functions.Menu(WenceslasSquare, OldTownSquare, NationalLibrary, dialogs.Student);
             Console.ReadKey();
         }
         public static void TechnicalUniversity()
         {
-            texts.WelcomeText("ČVUT", "Zdejší student");
-            texts.TransportInfo("Pražský hrad", "Staroměstské náměstí", "Národní knihovna");
-            transport.Move(PragueCastle, OldTownSquare, NationalLibrary);
+            texts.VisitLocation("ČVUT", "Zdejší student", "Pražský hrad", "Letiště", "Smíchov");
+            Functions.Menu(PragueCastle, Airport, Smichov, dialogs.CVUTstudent);
             Console.ReadKey();
         }
         public static void Airport()
         {
-            texts.WelcomeText("Letiště Praha", "Prodejce letenek");
-            texts.TransportInfo("Pražský hrad", "ČVUT", "Smíchov");
-            transport.Move(PragueCastle, TechnicalUniversity, Smichov);
+            texts.VisitLocation("Letiště Praha", "Prodejce letenek", "Pražský hrad", "ČVUT", "Smíchov");
+            Functions.Menu(PragueCastle, TechnicalUniversity, Smichov, dialogs.TicketSeller);
             Console.ReadKey();
         }
         public static void Voderadska()
         {
-            texts.WelcomeText("Gymnáium Voděradská", "Profesor dějepisu");
-            texts.TransportInfo("Olšanské hřbitovy", "Hlavní nádraží", "Národní knihovna");
-            transport.Move(Cemetery, MainTrainStation, FlorencBusStation);
+            texts.VisitLocation("Gymnázium Voděradská", "Profesor dějepisu", "Olšanské hřbitovy", "Hlavní nádraží", "Národní knihovna");
+            Functions.Menu(Cemetery, MainTrainStation, FlorencBusStation, dialogs.Teacher);
             Console.ReadKey();
         }
         public static void Cemetery()
         {
-            texts.WelcomeText("Olšanské hřbitovy", "Hrobník");
-            texts.TransportInfo("Gymnázium Voděradská", "Václavské náměstí", "Hlavní nádraží");
-            transport.Move(Voderadska, WenceslasSquare, MainTrainStation);
+            texts.VisitLocation("Olšanské hřbitovy", "Hrobník", "Gymnázium Voděradská", "Václavské náměstí", "Hlavní nádraží");
+            Functions.Menu(Voderadska, WenceslasSquare, MainTrainStation, dialogs.Gravedigger);
+
             Console.ReadKey();
         }
         public static void Smichov()
         {
-            texts.WelcomeText("Smíchov", "Náhodný kolemjdoucí");
-            texts.TransportInfo("Pražský hrad", "Letiště", "ČVUT");
-            transport.Move(PragueCastle, Airport, TechnicalUniversity);
+            texts.VisitLocation("Smíchov", "Náhodný kolemjdoucí", "Pražský hrad", "Letiště", "ČVUT");
+            Functions.Menu(PragueCastle, Airport, TechnicalUniversity, dialogs.Stranger);
+
             Console.ReadKey();
         }
         public static void Clinic()
         {
             Console.WriteLine($"Právě jsi se probudil na jakési klinice. Na vrátnici sedí starší paní. Zaptej se jí, co se ti stalo.");
-            dialogs.Receptionist();
-            transport.Move(PragueCastle, CharlesBridge, NationalLibrary);
+            Functions.Menu(PragueCastle, CharlesBridge, NationalLibrary, dialogs.Receptionist);
+
             Console.ReadKey();
 
         }

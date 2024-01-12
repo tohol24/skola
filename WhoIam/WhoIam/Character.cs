@@ -2,14 +2,17 @@
 {
     internal class Character
     {
+        int id;
         readonly string name = "";
         readonly int yearOfBirth = 0;
         readonly string job = "";
-        int charNumber = 0;
 
-        public Character(string name, int yearOfBirth, string job)
+        public Character(int id, string name, int yearOfBirth, string job)
         {
-
+        this.id = id;
+        this.name = name;
+        this.yearOfBirth = yearOfBirth;
+        this.job = job;
         }
     }
 }
