@@ -1,5 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Malovani
@@ -10,6 +16,7 @@ namespace Malovani
         bool Fill = false;
         string Shape = "Line";
         Pen myPen = new Pen(Color.Black, 3);
+        Pen systemPen = new Pen(Color.Black, 3);
         public Form1()
         {
             InitializeComponent();
@@ -17,7 +24,8 @@ namespace Malovani
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            FormBorderStyle = FormBorderStyle.Sizable;
+            WindowState = FormWindowState.Maximized;
         }
 
         private void textBoxBrushSize_TextChanged(object sender, EventArgs e)
@@ -52,7 +60,7 @@ namespace Malovani
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
-          
+            
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,23 +73,19 @@ namespace Malovani
             checkedListBox1.SetItemCheckState(iSelectedIndex, CheckState.Checked);
         }
 
-        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            label3.Text = "Teď je myš nad Panelem";
-            panel1.Paint += new PaintEventHandler(panel1_Paint);
-            panel1.Refresh();
+      
         }
 
-        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        private void panelPainting_Paint(object sender, PaintEventArgs e)
         {
-            label3.Text = "Teď je myš nad Formem";
-
+            ControlPaint.DrawBorder(e.Graphics, this.panel1.ClientRectangle, Color.DarkBlue, ButtonBorderStyle.Solid);
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void panelPainting_Paint_1(object sender, PaintEventArgs e)
         {
-            Graphics myGraphics = this.CreateGraphics();
-            myGraphics.DrawLine(myPen, MousePosition.X, MousePosition.Y, MousePosition.X, MousePosition.Y);
+            ControlPaint.DrawBorder(e.Graphics, this.panel1.ClientRectangle, Color.DarkBlue, ButtonBorderStyle.Solid);
         }
     }
 }
