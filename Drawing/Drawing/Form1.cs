@@ -11,6 +11,8 @@ namespace Drawing
         bool inside = false;
         int mouseX = 0;
         int mouseY = 0;
+        int mouseXLast = 0;
+        int mouseYLast=0;
         int shape = 0;
         Graphics g;
 
@@ -23,7 +25,7 @@ namespace Drawing
         {
             colorDialogColorSelect.ShowDialog();
             panelColorSelected.BackColor = colorDialogColorSelect.Color;
-            myPen.Color = colorDialogColorSelect.Color;
+            myPen.Color=colorDialogColorSelect.Color;
         }
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -62,51 +64,53 @@ namespace Drawing
 
         private void panelTemp_MouseDown(object sender, MouseEventArgs e)
         {
+            panelTemporary = panelDraw;
             moves = true;
+            mouseXLast=e.X;
+            mouseYLast=e.Y;
         }
 
         private void panelTemp_MouseMove(object sender, MouseEventArgs e)
         {
+            g = panelDraw.CreateGraphics();
+            mouseX = e.X;
+            mouseY = e.Y;
+            Brush myBrush = new SolidBrush(colorDialogColorSelect.Color);
             switch (shape)
             {
                 case 0:
-                    mouseX = e.X;
-                    mouseY = e.Y;
                     if (moves == true)
                     {
-                        g = panelTemp.CreateGraphics();
-                        g.DrawEllipse(myPen, mouseX, mouseY, myPen.Width, myPen.Width);
+                        System.Windows.Forms.Cursor.Current = System.Windows.Forms.Cursors.Cross;
+                        g.DrawLine(myPen, mouseX, mouseY, mouseXLast, mouseYLast);
+                        g.FillEllipse(myBrush, mouseX - myPen.Width / 2, mouseY - myPen.Width / 2, myPen.Width, myPen.Width);
+                        mouseXLast = e.X;
+                        mouseYLast = e.Y;
                     }
                     break;
                 case 1:
-                    mouseX = e.X;
-                    mouseY = e.Y;
                     if (moves == true)
                     {
-                        g = panelTemp.CreateGraphics();
-                        g.DrawLine(myPen, mouseX, mouseY, mouseX+5, mouseY+5);
+                        panelDraw = panelTemporary;
+                        g = panelDraw.CreateGraphics();
+                        g.DrawLine(myPen, mouseXLast, mouseYLast, mouseX, mouseY);
                     }
                     break;
                 case 2:
-                    mouseX = e.X;
-                    mouseY = e.Y;
                     if (moves == true)
                     {
-                        g = panelTemp.CreateGraphics();
+                        g = panelDraw.CreateGraphics();
                         g.DrawRectangle(myPen, mouseX, mouseY, myPen.Width, myPen.Width);
                     }
                     break;
                 case 3:
-                    mouseX = e.X;
-                    mouseY = e.Y;
                     if (moves == true)
                     {
-                        g = panelTemp.CreateGraphics();
-                        g.DrawEllipse(myPen, mouseX, mouseY, myPen.Width, myPen.Width);
+                        g = panelDraw.CreateGraphics();
+                        g.DrawEllipse(myPen, mouseX, mouseY, 50, 50);
                     }
                     break;
             }
-            
         }
 
         private void panelTemp_MouseUp(object sender, MouseEventArgs e)
@@ -123,7 +127,16 @@ namespace Drawing
 
         private void button1_Click(object sender, EventArgs e)
         {
-            panelTemp.Invalidate();
+            panelDraw.Invalidate();
+        }
+        private void panelTemp_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            checkedListBox1.SetItemCheckState(0, CheckState.Checked);
         }
     }
 }

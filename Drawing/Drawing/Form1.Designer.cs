@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxFilled = new System.Windows.Forms.CheckBox();
             this.panelColorSelected = new System.Windows.Forms.Panel();
@@ -38,16 +39,15 @@
             this.CheckBoxTavr = new System.Windows.Forms.Label();
             this.buttonChangeColor = new System.Windows.Forms.Button();
             this.labelFilled = new System.Windows.Forms.Label();
-            this.panelPainting = new System.Windows.Forms.Panel();
             this.colorDialogColorSelect = new System.Windows.Forms.ColorDialog();
-            this.panelTemp = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.panelDraw = new System.Windows.Forms.Panel();
+            this.panelTemporary = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
-            this.panelPainting.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.panelTemporary);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.checkBoxFilled);
@@ -64,6 +64,16 @@
             this.panel1.Size = new System.Drawing.Size(135, 1181);
             this.panel1.TabIndex = 8;
             this.panel1.MouseHover += new System.EventHandler(this.panel1_MouseHover);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(4, 409);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Vymazat";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -159,53 +169,41 @@
             this.labelFilled.TabIndex = 2;
             this.labelFilled.Text = "Výplň?";
             // 
-            // panelPainting
+            // panelDraw
             // 
-            this.panelPainting.BackColor = System.Drawing.Color.White;
-            this.panelPainting.Controls.Add(this.panelTemp);
-            this.panelPainting.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelPainting.ForeColor = System.Drawing.Color.Transparent;
-            this.panelPainting.Location = new System.Drawing.Point(135, 0);
-            this.panelPainting.Name = "panelPainting";
-            this.panelPainting.Size = new System.Drawing.Size(1789, 1181);
-            this.panelPainting.TabIndex = 9;
+            this.panelDraw.BackColor = System.Drawing.Color.Transparent;
+            this.panelDraw.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDraw.ForeColor = System.Drawing.Color.Transparent;
+            this.panelDraw.Location = new System.Drawing.Point(135, 0);
+            this.panelDraw.Name = "panelDraw";
+            this.panelDraw.Size = new System.Drawing.Size(1789, 1181);
+            this.panelDraw.TabIndex = 10;
+            this.panelDraw.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTemp_Paint);
+            this.panelDraw.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTemp_MouseDown);
+            this.panelDraw.MouseHover += new System.EventHandler(this.panelTemp_MouseHover);
+            this.panelDraw.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTemp_MouseMove);
+            this.panelDraw.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelTemp_MouseUp);
             // 
-            // panelTemp
+            // panelTemporary
             // 
-            this.panelTemp.BackColor = System.Drawing.Color.Transparent;
-            this.panelTemp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTemp.ForeColor = System.Drawing.Color.Transparent;
-            this.panelTemp.Location = new System.Drawing.Point(0, 0);
-            this.panelTemp.Name = "panelTemp";
-            this.panelTemp.Size = new System.Drawing.Size(1789, 1181);
-            this.panelTemp.TabIndex = 10;
-            this.panelTemp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelTemp_MouseDown);
-            this.panelTemp.MouseHover += new System.EventHandler(this.panelTemp_MouseHover);
-            this.panelTemp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panelTemp_MouseMove);
-            this.panelTemp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panelTemp_MouseUp);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(4, 409);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Vymazat";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.panelTemporary.Location = new System.Drawing.Point(7, 502);
+            this.panelTemporary.Name = "panelTemporary";
+            this.panelTemporary.Size = new System.Drawing.Size(49, 42);
+            this.panelTemporary.TabIndex = 0;
+            this.panelTemporary.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1924, 1181);
-            this.Controls.Add(this.panelPainting);
+            this.Controls.Add(this.panelDraw);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panelPainting.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -222,10 +220,10 @@
         private System.Windows.Forms.Label CheckBoxTavr;
         private System.Windows.Forms.Button buttonChangeColor;
         private System.Windows.Forms.Label labelFilled;
-        private System.Windows.Forms.Panel panelPainting;
         private System.Windows.Forms.ColorDialog colorDialogColorSelect;
-        private System.Windows.Forms.Panel panelTemp;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panelDraw;
+        private System.Windows.Forms.Panel panelTemporary;
     }
 }
 
