@@ -19,6 +19,7 @@ namespace Drawing
         public Form1()
         {
             InitializeComponent();
+
         }
 
         private void buttonChangeColor_Click(object sender, EventArgs e)
@@ -87,29 +88,7 @@ namespace Drawing
                         mouseXLast = e.X;
                         mouseYLast = e.Y;
                     }
-                    break;
-                case 1:
-                    if (moves == true)
-                    {
-                        panelDraw = panelTemporary;
-                        g = panelDraw.CreateGraphics();
-                        g.DrawLine(myPen, mouseXLast, mouseYLast, mouseX, mouseY);
-                    }
-                    break;
-                case 2:
-                    if (moves == true)
-                    {
-                        g = panelDraw.CreateGraphics();
-                        g.DrawRectangle(myPen, mouseX, mouseY, myPen.Width, myPen.Width);
-                    }
-                    break;
-                case 3:
-                    if (moves == true)
-                    {
-                        g = panelDraw.CreateGraphics();
-                        g.DrawEllipse(myPen, mouseX, mouseY, 50, 50);
-                    }
-                    break;
+                    break;              
             }
         }
 
